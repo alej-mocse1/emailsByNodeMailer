@@ -5,7 +5,14 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// Configurar CORS para permitir todas las peticiones
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false,
+}));
 
 // Configurar transportador de Outlook
 const transporter = nodemailer.createTransport({
